@@ -1,0 +1,61 @@
+QUESTION-1
+1. Write a C program for Caesar cipher involves replacing each letter of the alphabet with the letter
+standing k places further down the alphabet, for k in the range 1 through 25.
+
+AIM
+To write a C program to implement the Caesar cipher, which replaces each letter of the alphabet with the letter standing k places further down the alphabet, where k is in the range 1 to 25.
+PROCEDURE
+Start the program.
+Read the plaintext message from the user.
+Read the shift value k from 1 to 25.
+For each character in the message:
+If it is an uppercase letter, shift it by k positions.
+If it is a lowercase letter, shift it by k positions.
+Keep spaces and special characters unchanged.
+If the shift goes beyond Z or z, wrap around to the beginning of the alphabet.
+Display the encrypted ciphertext.
+Stop the program.
+CODE:
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char text[100];
+    int k, i;
+    printf("Enter the plaintext: ");
+    fgets(text, sizeof(text), stdin);
+    printf("Enter the shift value (1-25): ");
+    scanf("%d", &k);
+    if (k < 1 || k > 25)
+    {
+        printf("Invalid shift value! Enter a value between 1 and 25.\n");
+        return 0;
+    }
+    for (i = 0; text[i] != '\0'; i++)
+    {
+        if (text[i] >= 'A' && text[i] <= 'Z')
+        {
+            text[i] = ((text[i] - 'A' + k) % 26) + 'A';
+        }
+        else if (text[i] >= 'a' && text[i] <= 'z')
+        {
+            text[i] = ((text[i] - 'a' + k) % 26) + 'a';
+        }
+    }
+    printf("Encrypted text: %s", text);
+    return 0;
+}
+INPUT:
+Enter the plaintext: MEET AT NOON
+Enter the shift value (1-25): 4
+OUTPUT:
+Encrypted text: QIIX EX RSSR
+
+
+
+RESULT
+Thus, the Caesar cipher was successfully implemented in C, and the plaintext was encrypted by shifting each alphabet character by the specified value k.
+
+
+
+
